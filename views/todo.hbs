@@ -1,0 +1,41 @@
+<form method="post">
+  <div class="row">
+    <div class="col">
+      <button hidden>Autosave</button>
+      <button class="btn btn-success" name="new" value="true">New</button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      {{#if todo.length}}
+        <ul class="list-group">
+          {{#each todo}}
+            <li class="list-group-item d-flex align-items-center">
+              <input
+                type="checkbox"
+                onchange="this.form.submit()"
+                name="todo[{{@index}}][checked]"
+                {{#if this.checked}}checked{{/if}}
+              />
+              <input
+                name="todo[{{@index}}][text]"
+                onchange="this.form.submit()"
+                class="form-control mx-2"
+                value="{{this.text}}"
+              />
+              <button class="btn btn-danger" name="remove" value="{{@index}}">Remove</button>
+            </li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <h5>Your To-Do List is empty</h5>
+      {{/if}}
+    </div>
+  </div>
+  <style>
+    input[type=checkbox]:checked + input {
+      text-decoration: line-through;
+      opacity: 0.75;
+    }
+  </style>
+</form>
