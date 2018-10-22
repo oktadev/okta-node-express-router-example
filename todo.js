@@ -13,7 +13,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.use('/', (req, res) => {
-  res.render('todo', { title: 'To-do list', todo })
+  res.render('todo', { title: 'To-do list', todo, userinfo: req.userContext.userinfo })
 })
 
 module.exports = router
